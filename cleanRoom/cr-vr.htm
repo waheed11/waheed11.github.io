@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clean Room simulation</title>
+    <script src="https://rawgit.com/aframevr/aframe/917c06889ee1f3f79b7b1bbd9eab9815f9512503/dist/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
+    <script src="build.js"></script>
+    <script src="set-image.js"></script>
+    <script src="update-raycaster.js"></script>
+
+    <script src="https://cdn.rawgit.com/AdaRoseEdwards/facetype-fonts-for-a-frame/master/Dawning-of-a-New-Day_Regular.js"></script>
+    <script src="https://cdn.rawgit.com/AdaRoseEdwards/facetype-fonts-for-a-frame/master/Exo%202%20Black_Regular.js"></script>
+    <script src="https://cdn.rawgit.com/AdaRoseEdwards/facetype-fonts-for-a-frame/master/Exo%202_Bold%20Italic.js"></script>
+  </head>
+  <body>
+      
+    <a-scene>    
+      <a-assets>
+        <img id="pink" src="https://img.gs/bbdkhfbzkk/stretch/http://i.imgur.com/1hyyIUi.jpg" crossorigin="anonymous" />
+        <img src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png" id="grid" crossorigin="anonymous">
+        <img src="https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg" id="chrome" crossorigin="anonymous">
+        <img id="sky" src="https://img.gs/bbdkhfbzkk/2048x2048,stretch/http://i.imgur.com/WqlqEkq.jpg" crossorigin="anonymous" />
+          
+          <img id="office" src="https://waheed11.github.io/cleanRoom/127126.png">
+          <img id="person1" src="https://waheed11.github.io/cleanRoom/002.png">
+          <img id="button" src="https://waheed11.github.io/cleanRoom/button.png">
+
+           <script id="link" type="text/nunjucks">
+          <a-circle class="link" radius="0.75"
+            material="shader: flat; src: {{ thumb }}"
+            event-set__1="_event: mousedown; scale: 1 1 1"
+            event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+            event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+            event-set__4="_event: mouseleave; scale: 1 1 1"
+            event-set__5="_event: click; _target: #person2; visible: false;"
+            event-set__6="_event: click; _target: #picture; visible: false;"
+            event-set__7="_event: click; _target: #text1; visible: false;"
+            event-set__8="_event: click; _target: #text2; visible: true;"
+            event-set__9="_event: click; _target: #links; visible: false;"
+
+            event-set__10="_event: click; _target: #links2; visible: true;"
+                        
+            set-image="on: click; target: #image-360; src: {{ src }}""
+            sound="on: click; src: #click-sound"
+            update-raycaster="#cursor"></a-circle>
+        </script>
+
+          <script id="link1" type="text/nunjucks">
+          <a-circle class="link" radius="0.75"
+            material="shader: flat; src: {{ thumb }}"
+            event-set__1="_event: mousedown; scale: 1 1 1"
+            event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+            event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+            event-set__4="_event: mouseleave; scale: 1 1 1"
+            event-set__5="_event: click; _target: #person2; visible: true;"
+            event-set__6="_event: click; _target: #picture; visible: true;"
+            event-set__7="_event: click; _target: #text1; visible: true;"
+            event-set__8="_event: click; _target: #text2; visible: false;"
+            event-set__9="_event: click; _target: #links; visible: true;"
+
+            event-set__10="_event: click; _target: #links2; visible: false;"
+                        
+            set-image="on: click; target: #image-360; src: {{ src }}""
+            sound="on: click; src: #click-sound"
+            update-raycaster="#cursor"></a-circle>
+        </script>
+
+           </a-assets>
+        <!-- Image links. -->
+      <a-entity id="links" layout="type: circle; radius: 1.5" position="0 -2.5 -7">
+        <a-entity  template="src: #link" data-src="#office" data-thumb="#button"></a-entity>
+ 
+      </a-entity>
+
+       <a-entity id="links2" layout="type: circle; radius: 1.5" position="0 -2.5 -7" >
+        <a-entity  template="src: #link1" data-src="#sky" data-thumb="#button"></a-entity>
+ 
+      </a-entity>
+         
+        <a-entity position="0 0 -7" rotation="0 0 0">
+        <a-entity
+          rotation="0 0 5"
+          position="0 5 0"
+          text="text: Virtual Reality; font:dawning of a new day; bevelEnabled: true; bevelSize: 0.05; bevelThickness: 0.05; curveSegments: 12; size: 1; height: 0;"
+          material="color:lavenderblush; metalness:1; roughness: 0; sphericalEnvMap: #pink;"></a-entity>
+       
+            <!-- <a-entity  position="2 5 -7" image="src: #office; width: 25; height:12.5;"></a-entity>-->
+        <a-entity id="picture" visible="true" position="2 5 -7" rotation="0 0 0">
+        <a-image  src="#office"  width= 30 height= 15</a-image> 
+         </a-entity>
+
+            <a-entity position="-8 0 0" rotation="0 0 0">
+           <a-image  id="person2" visible="true" src="#person1"   width= 6 height= 12 </a-image>
+           </a-entity>
+
+          <a-entity position="5.5 3.5 0" scale="0.6 1.2 1" rotation="0 0 0" text="text: Clean Room; font: exo 2;  style: italic; size: 0.5; weight: bold; height: 0;" material="shader: flat; color:white ;"></a-entity>
+          <a-entity position="5.5 3.5 0" scale="0.6 1.2 1" rotation="0 0 0" text="text: Clean Room; font: exo 2;  style: italic; size: 0.5; weight: bold; height: 0; bevelEnabled: true; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1;" material="shader: flat; color:white;transparent: true; opacity: 0.4;"></a-entity>
+
+         <a-entity position="5.5 4.4 0" text="text: Training; font: exo 2;  style: italic; size: 0.5; weight: bold; height: 0;" material="shader: flat; color:white ;"></a-entity>
+         <a-entity position="5.5 4.4 0" text="text: Training; font: exo 2;  style: italic; size: 0.5; weight: bold; height: 0; bevelEnabled: true; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1;" material="shader: flat; color:white;transparent: true; opacity: 0.4;"></a-entity>
+     
+         <a-entity id="text1" position="-2 -2 0" text="text: Enter Clean Room simulation; font: exo 2;  style: italic; size: 0.4; weight: bold; height: 0;" material="shader: flat; color:white ;">
+          <a-animation attribute="material.opacity" from="0" to="1" dur="1000" repeat="indefinite"></a-animation>
+          </a-entity>
+
+            <a-entity id="text2" visible="false" position="-2 -2 0" text="text: Back To The Main Menu; font: exo 2;  style: italic; size: 0.4; weight: bold; height: 0;" material="shader: flat; color:white ;">
+          <a-animation attribute="material.opacity" from="0" to="1" dur="1000" repeat="indefinite"></a-animation>
+          </a-entity>
+          
+           </a-entity>
+
+        
+
+      <a-entity position="0 0 0"
+        geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
+        material="src: #grid; repeat: 10000 10000; transparent: true;metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"></a-entity>
+
+      <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
+      <a-entity light="color: ffaaff; intensity: 1.5" position="5 5 5"></a-entity>
+      <a-entity light="color: white; intensity: 0.5" position="-5 5 15"></a-entity>
+      <a-entity light="color: white; type: ambient;"></a-entity>
+
+         <a-entity camera look-controls>
+        <a-cursor id="A-cursor1"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: springgreen"
+          event-set__2="_event: mouseleave; color: white"
+          raycaster="objects: .link"></a-cursor>
+      </a-entity>
+
+     <!-- <a-sky src="#sky" rotation="0 -90 0"></a-sky>-->
+
+      <a-sky id="image-360"  radius="50" src="#sky"></a-sky>
+
+  
+<!--<script id="hide1" type="text/nunjucks"> 
+             
+    function demoVisibility() {
+    document.getElementById("person2").visible = "false";
+}
+    </script>-->
+
+    </a-scene>
+
+
+  </body>
+</html>
